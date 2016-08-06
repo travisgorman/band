@@ -2,7 +2,8 @@ import React from 'react';
 
 export default React.createClass({
   submitVote: function () {
-
+    console.log(this.props);
+    this.props.handleVote(this.props.bandName);
   },
   render: function(){
     return (
@@ -12,7 +13,7 @@ export default React.createClass({
         <input
           type="button"
           value="vote"
-          // onClick={submitVote}
+          onClick={this.submitVote}
           />
       </div>
     )

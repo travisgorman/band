@@ -11,7 +11,6 @@ export default React.createClass({
   },
   submitSearch: function () {
     let searchQuery = this.refs.search.value;
-
     $.ajax({
       url: `https://api.spotify.com/v1/search`,
       data: {q: searchQuery, type: 'artist'},
@@ -22,6 +21,9 @@ export default React.createClass({
         });
       }
     });
+  },
+  handleVote: function (name) {
+    console.log(name);
   },
   render: function () {
     let mySearchResults = this.state.results.map( (result, i) => {
@@ -34,6 +36,7 @@ export default React.createClass({
             key={i}
             img={result.images[0].url}
             bandName={result.name}
+            handleVote={this.handleVote}
            />
        )
     });
