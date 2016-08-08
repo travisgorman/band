@@ -1,7 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import Band from './Band';
-
+import voteModel from './../Models/voteModel';
+import votesCollection from './../Collections/votesCollection';
 
 export default React.createClass({
   getInitialState: function () {
@@ -9,7 +10,7 @@ export default React.createClass({
         results: []
     }
   },
-  submitSearch: function () {
+  submitSearch: function (evt) {
     let searchQuery = this.refs.search.value;
     $.ajax({
       url: `https://api.spotify.com/v1/search`,
@@ -22,8 +23,12 @@ export default React.createClass({
       }
     });
   },
-  handleVote: function (name) {
-    console.log(name);
+  handleVote: function (name, img) {
+    votesCollection.create({
+      name: name,
+      img: img,
+      votes: 1
+    });
   },
   render: function () {
     let mySearchResults = this.state.results.map( (result, i) => {

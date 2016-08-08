@@ -1,7 +1,11 @@
 import Backbone from 'backbone';
-import voteModel from 'voteModel';
+import voteModel from '.././Models/voteModel';
 
-export default Backbone.Collection.extend({
+const VotesCollection = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/appdata/kid_rJ7JE9Xt/votesCollection`,
   model: voteModel
 });
+
+let votesCollection = new VotesCollection;
+
+export default votesCollection;

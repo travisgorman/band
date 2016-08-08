@@ -6,7 +6,7 @@ export default React.createClass({
     return (
       <div>
         <nav>
-          <Link to='/'>Search</Link>
+          <Link to='/search'>Search</Link>
           <Link to='/votes'>Votes</Link>
         </nav>
       </div>

@@ -3,7 +3,7 @@ import React from 'react';
 export default React.createClass({
   submitVote: function () {
     console.log(this.props);
-    this.props.handleVote(this.props.bandName);
+    this.props.handleVote(this.props.bandName, this.props.img)
   },
   render: function(){
     return (
