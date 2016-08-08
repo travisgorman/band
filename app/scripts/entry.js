@@ -7,7 +7,8 @@ import ReactDOM from 'react-dom';
 import router from './router';
 import $ from 'jquery';
 import settings from './settings';
-import session from './models/session';
+import store from './store';
+
 // const router =
 //     (
 //       <Router history={hashHistory}>
@@ -19,17 +20,36 @@ import session from './models/session';
 //       </Router>
 //     );
 
-$(document).ajaxSend(function( evt, xhr, jquerySettings ){
+// $(document).ajaxSend(function( evt, xhr, jquerySettings ){
 
-  if (!jquerySettings.url.includes('https://api.spotify.com/v1/')) {
-    // if i'm logging in or siging up:
-    xhr.setRequestHeader( 'Authorization', settings.basicAuth )
-    // if i'm sending anythign else to kinvey, authenticate with the auth token
-  } else {
-    xhr.setRequestHeader('Kinvey', session.authtoken);
-  }
 
-});
+
+  $(document).ajaxSend(function(evt, xhrAjax, jqueryAjax) {
+
+    if (!jqueryAjax.url.includes('https://api.spotify.com/v1')){
+      // if (localStorage.getItem('authtoken')) {
+      if (store.session.get('authtoken')) {
+        // xhrAjax.setRequestHeader('Authorization', 'Kinvey ' + localStorage.getItem('authtoken'));
+        xhrAjax.setRequestHeader('Authorization', 'Kinvey ' + store.session.get('authtoken'));
+      } else {
+        xhrAjax.setRequestHeader('Authorization', settings.basicAuth);
+      }
+
+    }
+  });
+
+
+  // if i'm logging in or siging up:
+//   if (!jquerySettings.url.includes('https://api.spotify.com/v1/')
+//   && (!jquerySettings.url.includes('kid_rJ7JE9Xt/votesCollection')) ) {
+//     xhr.setRequestHeader( 'Authorization', settings.basicAuth )
+//   }
+//     // if i'm sending anythign else to kinvey, authenticate with the auth token
+//     else {
+//       xhr.setRequestHeader('Authorization', `Kinvey ${session.authtoken}`)
+//     }
+// });
+
 
 
 ReactDOM.render(router, document.getElementById('page'));
