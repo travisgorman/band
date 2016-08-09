@@ -1,5 +1,7 @@
-import Session from './models/session';
+import Session from './Models/session';
+import VotesCollection from './Collections/votesCollection';
 
 export default {
-  session: new Session()
+  session: new Session(),
+  votesCollection: new VotesCollection()
 }

@@ -18,16 +18,11 @@ export default React.createClass({
   },
   submitHandler: function (e) {
     e.preventDefault();
-
     var data = Object.keys(this.refs).reduce((returnSoFar, curr) => {
       returnSoFar[curr] = this.refs[curr].value;
       return returnSoFar;
     }, {})
-    console.log(data);
     store.session.login(data);
-      // .then(function(response){
-      //   console.log(response);
-      // });
   },
   shouldComponentUpdate: function ( nextProps, nextState ) {
     if ( nextState.authtoken ) {
@@ -43,15 +38,22 @@ export default React.createClass({
       <input
         ref="username"
         type="text"
-        placeholder="username" />
+        placeholder="username"
+      />
       <input
         ref="password"
         type="password"
-        placeholder="password" />
+        placeholder="password"
+      />
       <input
         type="submit"
-        value="submit" />
-      <Link to="/signup"><span>create an account</span></Link>
+        value="submit"
+      />
+      <Link to="/signup">
+        <span>
+          create an account
+        </span>
+      </Link>
       </form>
     )
   }
