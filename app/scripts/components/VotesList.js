@@ -17,11 +17,8 @@ updateState: function() {
   });
 },
 componentDidMount: function(){
-
   store.votesCollection.fetch()
-  // console.log(store.votesCollection);
   store.votesCollection.on( 'change update', this.updateState );
-  // console.log(store.votesCollection);
 },
 componentWillUnmount: function(){
   store.votesCollection.off( 'change update', this.updateState );

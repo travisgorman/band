@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Band from './Band';
 import voteModel from './../Models/voteModel';
 import votesCollection from './../Collections/votesCollection';
+import store from '../store';
 
 export default React.createClass({
   getInitialState: function () {
@@ -24,7 +25,7 @@ export default React.createClass({
     });
   },
   handleVote: function (name, img) {
-    votesCollection.create({
+    store.votesCollection.create({
       name: name,
       img: img,
       votes: 1
